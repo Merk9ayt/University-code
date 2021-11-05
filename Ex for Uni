@@ -1,0 +1,288 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <sstream>
+#include <ctype.h>
+#include <fstream>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <windows.h>
+using namespace std;
+
+
+
+void calc()                                                                 //Задание 1 
+{
+    char sy;
+    double f, s;
+    cout << "1 число, 2 число, действие(+,-,*,/): ";
+    cin >> f >> s >> sy;
+    if (!f)
+    {
+        cout << "Некоректно введена первая переменная\n\a";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> f >> s >> sy;
+    }
+    if (!s)
+    {
+        cout << "Некоректно введена вторая переменная\n\a";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> f >> s >> sy;
+    }
+    if (((sy) == !(sy)) || ((sy != '+') && (sy != '-') && (sy != '*') && (sy != '/')))
+    {
+        cout << "Некоректно введено действие \n\a";
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> f >> s >> sy;
+    }
+
+    switch (sy)
+    {
+    case '+':
+    {
+        cout << "Ответ:" << f + s << "\n";
+        break;
+    }
+    case '-':
+    {
+        cout << "Ответ:" << f - s << "\n";
+        break;
+    }
+    case '*':
+    {
+        cout << "Ответ:" << f * s << "\n";
+        break;
+    }
+    case '/':
+    {
+        if (s == 0)
+        {
+            cout << "Ошибка, делить на ноль нельзя" << "\n";
+        }
+        else
+        {
+            cout << "Ответ:" << f / s << "\n";
+            break;
+        }
+    }
+    }
+    system("pause");
+}
+
+void proverka()
+{
+    cout << "Введите любой символ кроме ввода чтобы прейти к калькулятору\n";
+    cin.ignore(256, '\n');
+    while ((cin.get() != '\n'))
+    {
+        calc();
+    }
+    cout<< "Введите любой символ кроме ввода чтобы прейти к калькулятору\n";
+    while ((cin.get() == '\n'))
+    {
+        cout<< "Пустая строка\n\a";
+    }
+}
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // // // // // // // // // // //
+void up_registr()                                                        //Задание 2
+{
+    string strb;
+    cout << "Введите строку\n";
+    cin >> strb;
+    for (int i = 0; i < strb.size(); i++)
+    {
+        strb[i] = toupper(strb[i]);
+    }
+    cout << strb << "\n";
+    system("pause");
+}
+
+void down_registr()
+{
+    string strb;
+    cout << "Введите строку\n";
+    cin >> strb;
+    for (int i = 0; i < strb.size(); i++)
+    {
+        strb[i] = tolower(strb[i]);
+    }
+    cout << strb << "\n";
+    system("pause");
+}
+
+void conkatination()
+{
+    string strinput, srtconc;
+    char str = '0';
+    int a = 0;
+    while (a != 2)
+    {
+        cout << "Введите строку или 0 чтобы получить ответ\n";
+        cin >> strinput;
+        if (strinput[a] == str)
+        {
+            a = 2;
+            strinput = '\n';
+        }
+        srtconc = srtconc + strinput;
+    }
+    cout << "Ответ:" << srtconc << "\n";
+    system("pause");
+}
+
+void output_in_file()
+{
+    string str;
+    ofstream fileout;
+    int a = 0;
+
+    fileout.open("fileout.txt");
+    while (a != 2)
+    {
+        cout << "Введите строку или 0 чтобы закончить\n";
+        cin >> str;
+        if (str[a] == '0')
+        {
+            a = 2;
+            str = '\n';
+        }
+        fileout << str <<"\n";
+    }
+    cout << "Название файла fileout.txt\n";
+    fileout.close();
+    system("pause");
+}
+
+void read_from_file() 
+{
+    char str[256];
+    ifstream fileread;
+    cout << "Открывается файл созданный в 4 пункте\n";
+    fileread.open("fileout.txt");
+    fileread.getline(str, 256, '\n');
+    cout << str << "\n";
+    fileread.close();
+    system("pause");
+}
+
+void second_ex_vibor()
+{
+    int choose1, choose2, a = 0;
+    while (a != 1)
+    {
+        cout << "Что хотите сделать?\n1)Выйти в меню заданий\n2)Преобразовать регистр\n3)Конкатенация строк\n4)Вывод строк в файл\n5)Чтение из произвольного файла\n";
+        cin >> choose1;
+        switch (choose1)
+        {
+        case 1:
+        {
+            a = 1;
+            break;
+        }
+        case 2:
+        {
+            while (a != 3)
+            {
+                cout << "В какой регистр хотите преобразовать?\n1)В верхний\n2)В нижний\n3)Выход\n";
+                cin >> choose2;
+                switch (choose2)
+                {
+                case 1:
+                {
+                    up_registr();
+                    break;
+                }
+                case 2:
+                {
+                    down_registr();
+                    break;
+                }
+                case 3:
+                {
+                    a = 3;
+                    break;
+                }
+                default:
+                {
+                    cout << "Ошибка, повторите ввод\n";
+                    break;
+                }
+                }
+            }
+            break;
+        }
+        case 3:
+        {
+            conkatination();
+            break;
+        }
+        case 4:
+        {
+            output_in_file();
+            break;
+        }
+        case 5:
+        {
+            read_from_file();
+            break;
+        }
+        default:
+        {
+            cout << "Ошибка, повторите ввод\n";
+            break;
+        }
+        }
+    }
+}
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // // // // // // // // // // //
+
+void vibor()
+{
+    int z;
+    cout << "Выберите номер задания" << endl;
+    cin >> z;
+    while (z)
+    {
+        switch (z)
+        {
+        case 1:
+        {
+            proverka();
+            cout << "Выберите номер задания" << endl;
+            cin >> z;
+            break;
+        }
+        case 2:
+        {
+            second_ex_vibor();
+            cout << "Выберите номер задания" << endl;
+            cin >> z;
+            break;
+        }
+        case 3:
+        {
+
+
+            cout << "Выберите номер задания" << endl;
+            cin >> z;
+            break;
+        }
+        default:
+            exit(1);
+        }
+    }
+}
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    setlocale(LC_ALL, "Rus");
+
+    vibor();
+	return 0;
+}
