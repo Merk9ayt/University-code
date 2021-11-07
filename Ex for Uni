@@ -63,6 +63,7 @@ void calc()                                                                 //З
         if (s == 0)
         {
             cout << "Ошибка, делить на ноль нельзя" << "\n";
+            exit(1);
         }
         else
         {
@@ -74,7 +75,7 @@ void calc()                                                                 //З
     system("pause");
 }
 
-void proverka()
+void check_an_empty_string()
 {
     while (int a = 1 != 0)
     {
@@ -93,7 +94,7 @@ void proverka()
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void up_registr()                                                        //Задание 2
+void str_in_uppercase()                                                        //Задание 2
 {
     string strb;
     cout << "Введите строку\n";
@@ -103,10 +104,9 @@ void up_registr()                                                        //За�
         strb[i] = toupper(strb[i]);
     }
     cout << strb << "\n";
-    system("pause");
 }
 
-void down_registr()
+void str_in_lowercase()
 {
     string strb;
     cout << "Введите строку\n";
@@ -116,7 +116,6 @@ void down_registr()
         strb[i] = tolower(strb[i]);
     }
     cout << strb << "\n";
-    system("pause");
 }
 
 void conkatination()
@@ -136,7 +135,6 @@ void conkatination()
         srtconc = srtconc + strinput;
     }
     cout << "Ответ:" << srtconc << "\n";
-    system("pause");
 }
 
 void output_in_file()
@@ -159,22 +157,28 @@ void output_in_file()
     }
     cout << "Название файла fileout.txt\n";
     fileout.close();
-    system("pause");
 }
 
 void read_from_file() 
 {
     char str[256];
     ifstream fileread;
-    cout << "Открывается файл созданный в 4 пункте\n";
-    fileread.open("fileout.txt");
-    fileread.getline(str, 256, '\n');
-    cout << str << "\n";
+    if(fileread.is_open())
+    {
+        cout << "Открывается файл созданный в 4 пункте\n";
+        fileread.open("fileout.txt");
+        fileread.getline(str, 256, '\n');
+        cout << str << "\n";
+    }
+    else
+    {
+        cout << "Не создан файл в 4 задании просьба создать его\n";
+        exit(1);
+    }
     fileread.close();
-    system("pause");
 }
 
-void second_ex_vibor()
+void choose_in_second_exercise()
 {
     int choose1, choose2, a = 0;
     while (a != 1)
@@ -198,12 +202,12 @@ void second_ex_vibor()
                 {
                 case 1:
                 {
-                    up_registr();
+                    str_in_uppercase();
                     break;
                 }
                 case 2:
                 {
-                    down_registr();
+                    str_in_lowercase();
                     break;
                 }
                 case 3:
@@ -274,7 +278,7 @@ void search_common_word()
     string word = "\0";
     for (const auto& lost : search)
     {
-        if (wo.second > cword)
+        if (lost.second > cword)
         {
             cword = lost.second;
             word = lost.first;
@@ -284,8 +288,8 @@ void search_common_word()
     cout << "Количество встреченных слов: " << cword + 1 << "\n";
     system("pause");
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void vibor()
+
+void choose_exercise()
 {
     int z;
     cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
@@ -296,14 +300,14 @@ void vibor()
         {
         case 1:
         {
-            proverka();
+            check_an_empty_string();
             cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
             cin >> z;
             break;
         }
         case 2:
         {
-            second_ex_vibor();
+            choose_in_second_exercise();
             cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
             cin >> z;
             break;
@@ -329,6 +333,6 @@ int main()
     SetConsoleOutputCP(1251);
     setlocale(LC_ALL, "Rus");
 
-    vibor();
+    choose_exercise();
 	return 0;
 }
