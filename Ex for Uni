@@ -7,35 +7,34 @@
 #include <cstring>
 #include <string>
 #include <vector>
-#include <windows.h>
 #include <unordered_map>
 #pragma warning(disable : 4996)
 
 using namespace std;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void calc()                                                                 //Задание 1 
+void calc()                                                                 //1 Exercise 
 {
     char sy;
     double f, s;
-    cout << "1 число, 2 число, действие(+,-,*,/): ";
+    cout << "1 variable, 2 variable, action(+,-,*,/): ";
     cin >> f >> s >> sy;
     if (!f)
     {
-        cout << "Некоректно введена первая переменная\n";
+        cout << "Error the first variable is incorrect\n";
         cin.clear();
         cin.ignore(256, '\n');
         cin >> f >> s >> sy;
     }
     if (!s)
     {
-        cout << "Некоректно введена вторая переменная\n";
+        cout << "Error the second variable is incorrect\n";
         cin.clear();
         cin.ignore(256, '\n');
         cin >> f >> s >> sy;
     }
     if (((sy) == !(sy)) || ((sy != '+') && (sy != '-') && (sy != '*') && (sy != '/')))
     {
-        cout << "Некоректно введено действие \n";
+        cout << "Error the action is incorrect\n";
         cin.clear();
         cin.ignore(256, '\n');
         cin >> f >> s >> sy;
@@ -45,29 +44,29 @@ void calc()                                                                 //З
     {
     case '+':
     {
-        cout << "Ответ:" << f + s << "\n";
+        cout << "Answer:" << f + s << "\n";
         break;
     }
     case '-':
     {
-        cout << "Ответ:" << f - s << "\n";
+        cout << "Answer:" << f - s << "\n";
         break;
     }
     case '*':
     {
-        cout << "Ответ:" << f * s << "\n";
+        cout << "Answer:" << f * s << "\n";
         break;
     }
     case '/':
     {
         if (s == 0)
         {
-            cout << "Ошибка, делить на ноль нельзя" << "\n";
+            cout << "Error, it is impossible to divide by zero\n";
             exit(1);
         }
         else
         {
-            cout << "Ответ:" << f / s << "\n";
+            cout << "Answer:" << f / s << "\n";
             break;
         }
     }
@@ -79,25 +78,25 @@ void check_an_empty_string()
 {
     while (int a = 1 != 0)
     {
-        cout << "Введите любой символ кроме ввода чтобы прейти к калькулятору ввод выйдет из программы\n";
+        cout << "Enter any character other than the input to go to the calculator the input will exit the program\n";
         cin.ignore(256, '\n');
         while ((cin.get() != '\n'))
         {
             calc();
         }
-        cout<< "Введите любой символ кроме ввода чтобы прейти к калькулятору ввод выйдет из программы\n";
+        cout<< "Enter any character other than the input to go to the calculator the input will exit the program\n";
         while ((cin.get() == '\n'))
         {
-            cout<< "Пустая строка\n";
+            cout<< "Empty string\n";
             exit(1);
         }
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void str_in_uppercase()                                                        //Задание 2
+void str_in_uppercase()                                                        //2 Exercise
 {
     string strb;
-    cout << "Введите строку\n";
+    cout << "Enter the string\n";
     cin >> strb;
     for (int i = 0; i < strb.size(); i++)
     {
@@ -109,7 +108,7 @@ void str_in_uppercase()                                                        /
 void str_in_lowercase()
 {
     string strb;
-    cout << "Введите строку\n";
+    cout << "Enter the string\n";
     cin >> strb;
     for (int i = 0; i < strb.size(); i++)
     {
@@ -125,7 +124,7 @@ void conkatination()
     int a = 0;
     while (a != 2)
     {
-        cout << "Введите строку или 0 чтобы получить ответ\n";
+        cout << "Enter the string or 0 to get an answer\n";
         cin >> strinput;
         if (strinput[a] == str)
         {
@@ -134,7 +133,7 @@ void conkatination()
         }
         srtconc = srtconc + strinput;
     }
-    cout << "Ответ:" << srtconc << "\n";
+    cout << "Answer:" << srtconc << "\n";
 }
 
 void output_in_file()
@@ -146,7 +145,7 @@ void output_in_file()
     fileout.open("fileout.txt");
     while (a != 2)
     {
-        cout << "Введите строку или 0 чтобы закончить\n";
+        cout << "Enter the string or 0 to finish\n";
         cin >> str;
         if (str[a] == '0')
         {
@@ -155,7 +154,7 @@ void output_in_file()
         }
         fileout << str <<"\n";
     }
-    cout << "Название файла fileout.txt\n";
+    cout << "File name fileout.txt\n";
     fileout.close();
 }
 
@@ -165,14 +164,14 @@ void read_from_file()
     ifstream fileread;
     if(fileread.is_open())
     {
-        cout << "Открывается файл созданный в 4 пункте\n";
+        cout << "The file created in task 4 is opened\n";
         fileread.open("fileout.txt");
         fileread.getline(str, 256, '\n');
         cout << str << "\n";
     }
     else
     {
-        cout << "Не создан файл в 4 задании просьба создать его\n";
+        cout << "File not created in task 4, please create it \n";
         exit(1);
     }
     fileread.close();
@@ -183,7 +182,7 @@ void choose_in_second_exercise()
     int choose1, choose2, a = 0;
     while (a != 1)
     {
-        cout << "Что хотите сделать?\n1)Выйти в меню заданий\n2)Преобразовать регистр\n3)Конкатенация строк\n4)Вывод строк в файл\n5)Чтение из произвольного файла\n";
+        cout << "What do you want to do?\n1)Exit to the task menu\n2)Convert case\n3)Concatenate strings\n4)Output strings to a file\n5)Read from an arbitrary file\n";
         cin >> choose1;
         switch (choose1)
         {
@@ -196,7 +195,7 @@ void choose_in_second_exercise()
         {
             while (a != 3)
             {
-                cout << "В какой регистр хотите преобразовать?\n1)В верхний\n2)В нижний\n3)Выход\n";
+                cout << "What case do you want to convert to?\n1)To upper\n2)To lower\n3)Exit\n";
                 cin >> choose2;
                 switch (choose2)
                 {
@@ -217,7 +216,7 @@ void choose_in_second_exercise()
                 }
                 default:
                 {
-                    cout << "Ошибка, повторите ввод\n";
+                    cout << "Error, please try again\n";
                     break;
                 }
                 }
@@ -241,14 +240,14 @@ void choose_in_second_exercise()
         }
         default:
         {
-            cout << "Ошибка, повторите ввод\n";
+            cout << "Error, please try again\n";
             break;
         }
         }
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-unordered_map < string, int > common_word()                                            //Задание 3
+unordered_map < string, int > common_word()                                            //3 Exercise
 {
     unordered_map < string, int > search;
     char* wor;
@@ -271,7 +270,7 @@ unordered_map < string, int > common_word()                                     
 }
 void search_common_word()
 {
-    cout << "Введите текст :\n";
+    cout << "Enter text :\n";
 
     unordered_map < string, int > search = common_word();
     int cword = 0;
@@ -284,15 +283,15 @@ void search_common_word()
             word = lost.first;
         }
     }
-    cout << "Наиболее встречаемое слово: " << word << "\n";
-    cout << "Количество встреченных слов: " << cword + 1 << "\n";
+    cout << "Most common word : " << word << "\n";
+    cout << "Quantity of words encountered: " << cword + 1 << "\n";
     system("pause");
 }
 
 void choose_exercise()
 {
     int z;
-    cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
+    cout << "Choose exercise\n1)Calc\n2)Working with strings\n3)Word search\n";
     cin >> z;
     while (z)
     {
@@ -301,14 +300,14 @@ void choose_exercise()
         case 1:
         {
             check_an_empty_string();
-            cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
+            cout << "Choose exercise\n1)Calc\n2)Working with strings\n3)Word search\n";
             cin >> z;
             break;
         }
         case 2:
         {
             choose_in_second_exercise();
-            cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
+            cout << "Choose exercise\n1)Calc\n2)Working with strings\n3)Word search\n";
             cin >> z;
             break;
         }
@@ -316,12 +315,12 @@ void choose_exercise()
         {
             common_word();
             search_common_word();
-            cout << "Выберите номер задания\n1)Калькулятор\n2)Работа со строками\n3)Поиск слова\n";
+            cout << "Choose exercise\n1)Calc\n2)Working with strings\n3)Word search\n";
             cin >> z;
             break;
         }
         default:
-            cout << "Ошибка выбора\n";
+            cout << "Error, please try again\n";
             exit(1);
         }
     }
@@ -329,10 +328,6 @@ void choose_exercise()
 
 int main()
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    setlocale(LC_ALL, "Rus");
-
     choose_exercise();
 	return 0;
 }
